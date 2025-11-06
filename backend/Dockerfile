@@ -1,16 +1,28 @@
+# Imagen base
 FROM python:3.11-slim
-# Instala dependencias del sistema necesarias para compilar mysqlclient
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    default-libmysqlclient-dev \
-    pkg-config \
-    && rm -rf /var/lib/apt/lists/*
 
+# Variables de entorno para evitar buffering y warnings
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Crear directorio de trabajo
 WORKDIR /app
 
+# Instalar dependencias del sistema (para mysqlclient)
+RUN apt-get update && apt-get install -y default-libmysqlclient-dev gcc && apt-get clean
+
+# Copiar e instalar dependencias de Python
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copiar todo el código del backend
 COPY . .
 
-CMD ["python", "app/manage.py", "runserver", "0.0.0.0:8000"]
+# Dar permisos al script de entrada
+RUN chmod +x entrypoint.sh
+
+# Exponer el puerto
+EXPOSE 8000
+
+# Comando por defecto
+ENTRYPOINT ["./entrypoint.sh"]

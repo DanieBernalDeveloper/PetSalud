@@ -84,8 +84,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydb',
-        'USER': 'root',
-        'PASSWORD': '54321',
+        'USER': 'user1',
+        'PASSWORD': '12345',
         'HOST': 'db',  # o la IP del contenedor si usas Docker
         'PORT': '3306',
     }
