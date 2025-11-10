@@ -5,7 +5,7 @@ pipeline {
         // Aquí va la credencial de GITHUB
         GIT_CREDENTIAL_ID = '8b8d32b9-c8bd-4a88-be64-9c862c7dc50c'
         // Aquí va la NUEVA credencial SSH hacia el servidor Windows
-        SSH_WINDOWS_ID = 'b1394cb4-bed0-4b78-8686-9303e60e3e4b'
+        SSH_WINDOWS_ID = 'windows-ssh-private-key'
         WINDOWS_HOST = '192.168.20.66'
         WINDOWS_USER = 'facel'
     }
