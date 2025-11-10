@@ -14,6 +14,9 @@ pipeline {
         dir("${WORKSPACE}") {
           sh '''
             set -e
+            mkdir -p /tmp/petsalud
+            cp -r . /tmp/petsalud
+            cd /tmp/petsalud
             docker compose up -d
             docker compose ps
           '''
