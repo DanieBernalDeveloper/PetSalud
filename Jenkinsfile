@@ -28,6 +28,7 @@ pipeline {
                         host: "${WINDOWS_HOST}",
                         user: "${WINDOWS_USER}",
                         identity: "${SSH_WINDOWS_ID}"
+                        allowAnyHosts: true
                     ], command: '''
                         echo '✅ Conexión SSH: Exitosa'
                         hostname
