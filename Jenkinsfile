@@ -17,7 +17,7 @@ pipeline {
                         name: 'Windows-Host',  // Nombre de la conexión SSH en Jenkins
                         host: HOST_IP,
                         user: HOST_USER,
-                        privateKey: credentials('8b8d32b9-c8bd-4a88-be64-9c862c7dc50c'),  // Asegúrate de tener las credenciales de SSH configuradas en Jenkins
+                        privateKey: credentials('b1394cb4-bed0-4b78-8686-9303e60e3e4b'),  // Asegúrate de tener las credenciales de SSH configuradas en Jenkins
                         allowAnyHosts: true   // Aquí está la adición de allowAnyHosts: true
                     ], command: """
                         cd ${COMPOSE_DIR}
