@@ -2,10 +2,8 @@ pipeline {
     agent any
 
     environment {
-        // Aquí va la credencial de GITHUB
         GIT_CREDENTIAL_ID = '8b8d32b9-c8bd-4a88-be64-9c862c7dc50c'
-        // Aquí va la NUEVA credencial SSH hacia el servidor Windows
-        SSH_WINDOWS_ID = 'windows-ssh-private-key'
+        SSH_WINDOWS_ID = 'windows-ssh-private-key'  // ID de credencial SSH en Jenkins
         WINDOWS_HOST = '192.168.20.66'
         WINDOWS_USER = 'facel'
     }
@@ -27,7 +25,7 @@ pipeline {
                         name: 'Windows-Host',
                         host: "${WINDOWS_HOST}",
                         user: "${WINDOWS_USER}",
-                        identity: "${SSH_WINDOWS_ID}",
+                        credentialsId: "${SSH_WINDOWS_ID}",
                         allowAnyHosts: true
                     ], command: '''
                         echo '✅ Conexión SSH: Exitosa'
@@ -45,7 +43,7 @@ pipeline {
                         name: 'Windows-Host',
                         host: "${WINDOWS_HOST}",
                         user: "${WINDOWS_USER}",
-                        identity: "${SSH_WINDOWS_ID}"
+                        credentialsId: "${SSH_WINDOWS_ID}"
                     ], command: '''
                         cd C:/Users/Facel/Downloads/TEST/PetSalud
                         docker-compose down
@@ -58,10 +56,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Pipeline completado correctamente'
+            echo 'Pipeline completado correctamente'
         }
         failure {
-            echo '❌ Pipeline falló. Revisa las credenciales SSH y conexión al host remoto.'
+            echo 'Pipeline falló. Revisa las credenciales SSH y conexión al host remoto.'
         }
     }
 }
