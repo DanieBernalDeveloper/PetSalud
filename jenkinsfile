@@ -17,6 +17,15 @@ pipeline {
         // Copiamos el proyecto fuera del workspace de Jenkins
         sh '''
           set -e
+
+          echo "Copiando proyecto a /tmp/petsalud..."
+          rm -rf /tmp/petsalud
+          mkdir -p /tmp/petsalud
+          cp -r . /tmp/petsalud
+
+          cd /tmp/petsalud
+
+          echo "Levantando servicios con Docker Compose..."
           docker compose up -d
 
           echo "Contenedores en ejecución:"
@@ -28,10 +37,10 @@ pipeline {
 
   post {
     success {
-      echo "✅ Despliegue completado correctamente."
+      echo "Despliegue completado correctamente."
     }
     failure {
-      echo "❌ Fallo en el despliegue. Revisa los logs."
+      echo "Fallo en el despliegue. Revisa los logs."
     }
   }
 }
