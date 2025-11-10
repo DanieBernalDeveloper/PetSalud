@@ -3,9 +3,9 @@ pipeline {
 
     environment {
         // Definimos variables de entorno para la IP, el usuario y la ruta del proyecto en Windows
-        HOST_IP = "192.168.x.x"  // Dirección IP de tu host Windows
-        HOST_USER = "TuUsuario"   // Usuario de Windows
-        COMPOSE_DIR = "C:/ruta/a/tu/proyecto"  // Ruta en Windows donde está tu archivo docker-compose.yml
+        HOST_IP = "192.168.20.66"  // Dirección IP de tu host Windows
+        HOST_USER = "facel"   // Usuario de Windows
+        COMPOSE_DIR = "C:/Users/Facel/Downloads/TEST/PetSalud"  // Ruta en Windows donde está tu archivo docker-compose.yml
     }
 
     stages {
