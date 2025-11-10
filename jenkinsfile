@@ -2,25 +2,35 @@ pipeline {
   agent any
 
   stages {
+
     stage('Checkout') {
       steps {
+        echo "📦 Clonando el repositorio..."
         checkout scm
       }
     }
 
     stage('Deploy') {
       steps {
-        // Ejecutar docker compose en el workspace del job
-        dir("${WORKSPACE}") {
-          sh '''
-            set -e
-            mkdir -p /tmp/petsalud
-            cp -r . /tmp/petsalud
-            cd /tmp/petsalud
-            docker compose up -d
-            docker compose ps
-          '''
-        }
+        echo "🚀 Iniciando despliegue con Docker Compose..."
+
+        // Copiamos el proyecto fuera del workspace de Jenkins
+        sh '''
+          set -e
+
+          echo "📂 Copiando proyecto a /tmp/petsalud..."
+          rm -rf /tmp/petsalud
+          mkdir -p /tmp/petsalud
+          cp -r . /tmp/petsalud
+
+          cd /tmp/petsalud
+
+          echo "🐳 Levantando servicios con Docker Compose..."
+          docker compose up -d
+
+          echo "✅ Contenedores en ejecución:"
+          docker compose ps
+        '''
       }
     }
   }
