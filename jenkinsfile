@@ -1,0 +1,44 @@
+pipeline {
+  agent any                        // cualquier agente (nodo) disponible
+  environment {
+    PROJECT_DIR = '/home/jaaz/Proyecto_CI/PetSalud'  // <<-- ajusta aquí la ruta absoluta
+  }
+  stages {
+    stage('Checkout') {
+      steps {
+        // obtiene la rama configurada en Jenkins job
+        checkout scm
+      }
+    }
+    stage('Deploy') {
+      steps {
+        // Ejecuta comandos en shell en el nodo donde corre Jenkins
+        sh """
+          # salir si hay error
+          set -e
+
+          # 1) ir al directorio del proyecto
+          cd ${PROJECT_DIR}
+
+          # 2) opcional: actualizar repo si no se usó checkout
+          # git pull origin ${env.BRANCH_NAME}
+
+          # 3) levantar contenedores - reconstruir si hay cambios
+          docker compose pull || true
+          docker compose up -d --build --remove-orphans
+
+          # 4) lista para ver el estado
+          docker compose ps
+        """
+      }
+    }
+  }
+  post {
+    success {
+      echo "Despliegue completado correctamente."
+    }
+    failure {
+      echo "Fallo en el despliegue. Revisa los logs."
+    }
+  }
+}
