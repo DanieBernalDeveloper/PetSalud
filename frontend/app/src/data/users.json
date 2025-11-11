@@ -1,0 +1,6 @@
+ [
+  { "username": "administrador", "password": "1234", "role": "admin" },
+  { "username": "visualizador", "password": "1234", "role": "viewer" },
+  { "username": "cliente", "password": "1234", "role": "client" }
+]
+ 

@@ -1,12 +1,22 @@
-# Dockerfile (ubicado en frontend/)
-FROM node:18
+# ---- Etapa 1: construir la app ----
+FROM node:20 AS build
 
 WORKDIR /app
 
-COPY app/package*.json ./app/
-WORKDIR /app/app
+COPY app/package*.json ./
 RUN npm install
 
-COPY app/ ./app/
+COPY app/ .
+RUN npm run build
 
-CMD ["npm", "start"]
+# ---- Etapa 2: servir archivos estáticos ----
+FROM node:20-slim
+
+WORKDIR /app
+
+COPY --from=build /app/dist ./dist
+RUN npm install -g serve
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "dist", "-l", "3000"]
