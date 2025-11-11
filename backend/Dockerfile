@@ -8,12 +8,13 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # Directorio de trabajo
 WORKDIR /app
 
-# Instalar dependencias del sistema necesarias para mysqlclient y compilación
+# Instalar dependencias del sistema necesarias para mysqlclient y netcat
 RUN apt-get update && apt-get install -y \
     build-essential \
     default-libmysqlclient-dev \
     pkg-config \
     gcc \
+    netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiar e instalar dependencias de Python
@@ -31,6 +32,4 @@ RUN chmod +x entrypoint.sh
 EXPOSE 8000
 
 # Definir el punto de entrada
-#ENTRYPOINT ["./entrypoint.sh"]
 ENTRYPOINT ["bash", "./entrypoint.sh"]
-
