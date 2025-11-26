@@ -11,6 +11,8 @@ import ListQuotes from "./components/client/AppointmentsTable";
 
 import Home from "./pages/Home";
 import Specialists from "./pages/Specialists";
+import RegisterService from "./pages/RegisterService";
+import RegisterTipeService from "./pages/RegisterTipeService";
 import Contact from "./pages/Contact";
 import Register from "./pages/Register";
 import Client from "./pages/Client";
@@ -46,6 +48,8 @@ function App() {
           <Route path="/specialists" element={<Specialists />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Register />} />
+          <Route path="/registerService" element={<RegisterService />} />
+          
         </Route>
 
         {/* Rutas protegidas según el rol (Administrador, visualizador y cliente) */}
@@ -57,6 +61,7 @@ function App() {
             <Route path="services" element={<ListServices />} />
             <Route path="services/:id" element={<ServicesDetail />} />
             <Route path="services/new" element={<ServiceForm />} />
+            <Route path="registerTipeService" element={<RegisterTipeService />} />
           </Route>
         </Route>
 
@@ -76,7 +81,7 @@ function App() {
           </Route>
         </Route>
           
-            </Routes>
+      </Routes>
     </>
   );
 }
