@@ -27,6 +27,20 @@ services:
       - DB_HOST=db
       - DB_PORT=3306
 
+
+  # Desarrollo
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile.dev
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./frontend/app:/app
+  #     - /app/node_modules
+  #   command: npm run dev
+
+  # Produccion
   frontend:
     build: ./frontend
     ports:
