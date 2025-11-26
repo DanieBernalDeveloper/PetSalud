@@ -51,25 +51,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://frontend:3000",
     "http://localhost:3000",
-    "http://172.18.0.3:3000",
 ]
-
-CORS_ALLOW_CREDENTIALS = True
-
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000'
-]
-
-
-# CORS_ALLOW_ALL_ORIGINS = True
-
 
 ROOT_URLCONF = 'myproject.urls'
 

@@ -24,12 +24,6 @@ function Navbar() {
             <Link to="/contact" className="hover:underline">
               Contáctanos
             </Link>
-            <Link to="/registerService" className="hover:underline">
-              Agendar cita
-            </Link>
-            {/* <Link to="/registerTipeService" className="hover:underline">
-              Registrar Tipo Servicio
-            </Link> */}
           </div>
 
           {/* Botón Iniciar Sesión */}
