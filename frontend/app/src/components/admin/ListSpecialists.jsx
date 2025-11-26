@@ -61,10 +61,9 @@ function ListSpecialists({ isAdmin = true }) {
         {/* Botón para agregar especialista */}
         {isAdmin && (
           <button
-            className="bg-[#37474F] text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2 shadow-md hover:bg-[#263238] transition cursor-pointer"
+            className="bg-[#29B6F6] font-semibold text-white px-4 py-2 rounded-lg font-medium hover:bg-[#29B6F6]"
             onClick={() => navigate("/admin/new")}
-          >
-            <FaPlus /> Agregar usuario
+          > Agregar usuario
           </button>
         )}
       </div>

@@ -41,10 +41,9 @@ function ListServices({ isAdmin = true }) {
       {isAdmin && (
         <div className="flex justify-start mb-4">
           <button
-            className="bg-red-500 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2 shadow-md hover:bg-red-600 transition cursor-pointer"
-            onClick={() => navigate("/admin/services/new")}
-          >
-            <FaPlus /> Agregar servicio
+            className="bg-[#29B6F6] font-semibold text-white px-4 py-2 rounded-lg font-medium hover:bg-[#29B6F6]"
+            onClick={() => navigate("/admin/services/registerTipeService")} 
+          >Agregar servicio
           </button>
         </div>
       )}

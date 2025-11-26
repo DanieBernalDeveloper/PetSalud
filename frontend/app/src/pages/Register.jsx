@@ -1,61 +1,36 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
-  const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
 
+  const handleLogin = (role) => {
+    /**
+     *
+     *Se implementaron tres botones para facilitar el acceso a las diferentes vistas. La idea es que, una vez que el formulario esté completo, se verifique el rol del usuario y se almacene en localStorage dentro de la clave auth. Como no hay una base de datos, toda la autenticación se gestiona localmente. Para validar el acceso, se puede comparar el usuario ingresado con la lista almacenada en localStorage, simulando un sistema de verificación.
+     */
+    localStorage.setItem("auth", role); // Guardamos el rol del usuario
+    navigate(`/${role}`); // Redirigimos a su vista correspondiente
+  };
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 gap-12">
-      {/* Iniciar sesión */}
-      <div className="bg-white p-6 rounded-lg shadow-md w-80">
-        <h2 className="text-lg font-semibold mb-4 text-center">Iniciar sesión</h2>
-        <form className="space-y-3">
-          <input
-            type="email"
-            placeholder="Correo electrónico"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring"
-          />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring"
-          />
-          <button
-            type="submit"
-            className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition"
-          >
-            Iniciar sesión
-          </button>
-        </form>
+    <>
+      <div>inicio de sesion</div>
+      <div className="flex flex-col items-center mt-10 gap-4">
+        <h1 className="text-2xl font-bold">Selecciona un perfil</h1>
+        <button
+          className="px-4 py-2 bg-blue-600 text-white rounded"
+          onClick={() => handleLogin("admin")}
+        >
+          Administrador
+        </button>
+        <button
+          className="px-4 py-2 bg-yellow-600 text-white rounded"
+          onClick={() => handleLogin("client")}
+        >
+          Cliente
+        </button>
       </div>
-
-      {/* Registro */}
-      <div className="bg-white p-6 rounded-lg shadow-md w-80">
-        <h2 className="text-lg font-semibold mb-4 text-center">Registro</h2>
-        <form className="space-y-3">
-          <input
-            type="text"
-            placeholder="Nombre"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring"
-          />
-          <input
-            type="email"
-            placeholder="Correo electrónico"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring"
-          />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring"
-          />
-          <button
-            type="submit"
-            className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition"
-          >
-            Registrarse
-          </button>
-        </form>
-      </div>
-    </div>
+    </>
   );
 }
+
 export default Register;

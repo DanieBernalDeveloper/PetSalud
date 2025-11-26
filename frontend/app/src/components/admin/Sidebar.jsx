@@ -17,7 +17,7 @@ function Sidebar({ isAdmin }) {
         }
       >
         <FaUserDoctor className="text-xl" />
-        <span className="font-medium">Usuarios</span>
+        <span className="font-medium">Especialistas</span>
       </NavLink>
 
       {/* Opción Servicios */}
@@ -31,19 +31,6 @@ function Sidebar({ isAdmin }) {
       >
         <FaThLarge className="text-xl" />
         <span className="font-medium">Servicios</span>
-      </NavLink>
-
-      {/* Opción ingresos */}
-      <NavLink
-        to={isAdmin ? "/admin/services" : "/viewer/services"}
-        className={({ isActive }) =>
-          `flex items-center gap-2 p-3 rounded-lg transition ${
-            isActive ? "bg-gray-200" : "hover:bg-gray-200 text-gray-800"
-          }`
-        }
-      >
-        <FaThLarge className="text-xl" />
-        <span className="font-medium">Ingresos</span>
       </NavLink>
     </div>
   );

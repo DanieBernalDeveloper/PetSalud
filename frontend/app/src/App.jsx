@@ -60,8 +60,8 @@ function App() {
             <Route path="new" element={<SpecialistForm />} />
             <Route path="services" element={<ListServices />} />
             <Route path="services/:id" element={<ServicesDetail />} />
-            <Route path="services/new" element={<ServiceForm />} />
-            <Route path="registerTipeService" element={<RegisterTipeService />} />
+            {/*<Route path="services/new" element={<ServiceForm />} />*/}
+            <Route path="services/registerTipeService" element={<RegisterTipeService />} />
           </Route>
         </Route>
 
