@@ -58,3 +58,64 @@ def registerTipeService(request):
         servicioTipe.save()
         return JsonResponse({'message': 'Tipo de Servicio registrado', 'id': servicioTipe.id})
     return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+def get_services(request):
+    if request.method == 'GET':
+        tipe_services = list(
+            TipeService.objects.filter(is_enable=1).values(
+                'id',
+                'name_service',
+                'descripcion_service',
+                'price_service',
+                'id_specialist_id'
+            )
+        )
+        return JsonResponse({'tipeServices': tipe_services})
+    
+def editService(request, id):
+    try:
+        tipe_service = TipeService.objects.get(id=id, is_enable=1)
+    except TipeService.DoesNotExist:
+        return JsonResponse({'error': 'Tipo de servicio no encontrado'}, status=404)
+
+    # Obtener un tipo de servicio (para la pantalla de edición)
+    if request.method == 'GET':
+        data = {
+            'id': tipe_service.id,
+            'name_service': tipe_service.name_service,
+            'descripcion_service': tipe_service.descripcion_service,
+            'price_service': tipe_service.price_service,
+            'id_specialist_id': tipe_service.id_specialist_id
+        }
+        return JsonResponse(data)
+
+    # Actualizar tipo de servicio
+    if request.method in ['PUT', 'POST']:
+        body = json.loads(request.body)
+
+        tipe_service.name_service = body.get('name_service', tipe_service.name_service)
+        tipe_service.descripcion_service = body.get('descripcion_service', tipe_service.descripcion_service)
+        tipe_service.price_service = body.get('price_service', tipe_service.price_service)
+        tipe_service.id_specialist_id = body.get('id_specialist_id', tipe_service.id_specialist_id)
+
+        tipe_service.save()
+
+        return JsonResponse({'message': 'Tipo de servicio actualizado correctamente'})
+
+    return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+def get_list_specialist(request):
+    if request.method == 'GET':
+        specialists = list(
+            Spealist.objects.filter(is_enable=1).values(
+                'id',
+                'name_specialist',
+                'lastName_specialist',
+                'cc_specialist',
+                'phone_specialist',
+                'address_specialist',
+                'email_specialist'
+            )
+        )
+        return JsonResponse({'specialists': specialists})
+

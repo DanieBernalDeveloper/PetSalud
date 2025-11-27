@@ -7,6 +7,7 @@ import SpecialistDetail from "./components/admin/SpecialistDetail";
 import SpecialistForm from "./components/admin/SpecialistForm";
 import ServicesDetail from "./components/admin/ServiceDetail";
 import ServiceForm from "./components/admin/ServiceForm";
+import EditService from "./components/admin/EditService";
 import ListQuotes from "./components/client/AppointmentsTable";
 
 import Home from "./pages/Home";
@@ -62,6 +63,7 @@ function App() {
             <Route path="services/:id" element={<ServicesDetail />} />
             {/*<Route path="services/new" element={<ServiceForm />} />*/}
             <Route path="services/registerTipeService" element={<RegisterTipeService />} />
+            <Route path="/admin/services/edit/:id" element={<EditService />} />
           </Route>
         </Route>
 

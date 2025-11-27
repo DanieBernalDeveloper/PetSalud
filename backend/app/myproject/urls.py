@@ -9,5 +9,9 @@ urlpatterns = [
     path('all-dates/', views.get_dates),
     path('registerService/', views.registerService),
     path('specialists/', views.get_specialist),
-    path('registerTipeService/', views.registerTipeService)
+    path('registerTipeService/', views.registerTipeService),
+    path('services/', views.get_services),
+    path('services/<int:id>/', views.editService),
+    path('listSpecialist/', views.get_Listspecialist)
+
 ]
