@@ -16,7 +16,7 @@ function ListSpecialist() {
             lastName: sp.lastName_specialist,
             cc: sp.cc_specialist,
             phone: sp.phone_specialist,
-            address: sp.address_specialist,
+            address: sp.adress_specialist, 
             email: sp.email_specialist,
           }))
         );

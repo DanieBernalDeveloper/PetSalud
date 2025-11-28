@@ -70,7 +70,7 @@ def get_services(request):
                 'id_specialist_id'
             )
         )
-        return JsonResponse({'tipeServices': tipe_services})
+    return JsonResponse({'tipeServices': tipe_services})
     
 def editService(request, id):
     try:
@@ -89,7 +89,6 @@ def editService(request, id):
         }
         return JsonResponse(data)
 
-    # Actualizar tipo de servicio
     if request.method in ['PUT', 'POST']:
         body = json.loads(request.body)
 
@@ -104,18 +103,19 @@ def editService(request, id):
 
     return JsonResponse({'error': 'Método no permitido'}, status=405)
 
-def get_list_specialist(request):
+def get_appointment(request):
     if request.method == 'GET':
-        specialists = list(
-            Spealist.objects.filter(is_enable=1).values(
-                'id',
-                'name_specialist',
-                'lastName_specialist',
-                'cc_specialist',
-                'phone_specialist',
-                'address_specialist',
-                'email_specialist'
+        appointment = list(
+            Service.objects.filter(is_enable=1).values(
+                'tipe_service',
+                'id_user',
+                'date_register',
+                'date_service',
+                'is_enable',
+                'hour_service',
+                'name_pet',
+                'descripcion_service'
             )
         )
-        return JsonResponse({'specialists': specialists})
-
+        return JsonResponse({'appointment': appointment})
+    

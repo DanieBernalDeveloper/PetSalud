@@ -33,7 +33,7 @@ function NavbarAdmin() {
         {menuOpen && (
           <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg hover:bg-gray-100">
             <button className="flex items-center p-2 w-full cursor-pointer " onClick={handleLogout}>
-              <FaSignOutAlt className="text-red-500 mr-2" /> Cerrar sesión
+              <FaSignOutAlt className="text-black -500 mr-2" /> Cerrar sesión
             </button>
           </div>
         )}

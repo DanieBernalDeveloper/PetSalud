@@ -12,18 +12,18 @@ function NavbarClient() {
   };
 
   return (
-    <nav className="bg-[#7D1D25] px-6 py-3 flex items-center justify-between relative">
+    <nav className="bg-white px-6 py-3 flex items-center justify-between relative">
       {/* Logo */}
       <div className="flex items-center gap-2">
         <FaPaw className="text-white text-2xl" />
-        <span className="text-white text-xl font-semibold">PetSalud</span>
+        <span className="text-black text-xl font-semibold">PetSalud</span>
       </div>
 
       {/* Usuario */}
       <div className="relative">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="flex items-center gap-2 text-white font-semibold focus:outline-none cursor-pointer"
+          className="flex items-center gap-2 text-black font-semibold focus:outline-none cursor-pointer"
         >
           <FaUserCircle className="text-2xl" />
           <span>User Client</span>
@@ -33,7 +33,7 @@ function NavbarClient() {
         {menuOpen && (
           <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-300 rounded-lg shadow-lg hover:bg-gray-100">
             <button className="flex items-center p-2 w-full cursor-pointer " onClick={handleLogout}>
-              <FaSignOutAlt className="text-red-500 mr-2" /> Cerrar sesión
+              <FaSignOutAlt className="text-black-500 mr-2" /> Cerrar sesión
             </button>
           </div>
         )}

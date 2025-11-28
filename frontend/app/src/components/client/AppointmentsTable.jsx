@@ -1,43 +1,63 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
-const AppointmentsTable = () => {
-  const appointments = [
-    { service: "Consulta General", date: "10/08/2025", time: "09:10 a.m." },
-    { service: "Diagnóstico por imágenes", date: "30/08/2025", time: "08:10 a.m." },
-    { service: "Desparasitación", date: "10/09/2025", time: "09:10 a.m." },
-  ];
+function AppointmentsTable() {
+  const [appointment, setAppointment] = useState([]);
+
+  useEffect(() => {
+    const fetchAppointment = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/appointment/");
+        const data = await response.json();
+
+        setAppointment(
+          data.appointment.map((sp) => ({
+            tipe_service: sp.tipe_service,
+            id_user: sp.id_user,
+            date_register: sp.date_register,
+            date_service: sp.date_service,
+            is_enable: sp.is_enable,
+            hour_service: sp.hour_service,
+            name_pet: sp.name_pet,
+            descripcion_service: sp.descripcion_service
+          }))
+        );
+      } catch (error) {
+        console.error("Error cargando la agenda:", error);
+      }
+    };
+
+    fetchAppointment();
+  }, []);
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full border-collapse text-left bg-white shadow-md rounded-lg">
+    <div className="p-4">
+      <table className="w-full border border-gray-300 rounded-lg shadow-md">
         <thead>
-          <tr className="bg-gray-100">
-            <th className="border-b p-4 text-gray-600 font-semibold">Servicio</th>
-            <th className="border-b p-4 text-gray-600 font-semibold">Fecha</th>
-            <th className="border-b p-4 text-gray-600 font-semibold">Hora</th>
-            <th className="border-b p-4 text-gray-600 font-semibold">Acciones</th>
+          <tr className="bg-gray-200 text-gray-700">
+            <th className="p-3 text-left border-b">Tipo de servicio</th>
+            <th className="p-3 text-left border-b">Fecha de registro</th>
+            <th className="p-3 text-left border-b">Fecha del servicio</th>
+            <th className="p-3 text-left border-b">Hora del servicio</th>
+            <th className="p-3 text-left border-b">Nombre de la mascota</th>
+            <th className="p-3 text-left border-b">Descripción del servicio</th>
           </tr>
         </thead>
+
         <tbody>
-          {appointments.map((appointment, index) => (
-            <tr key={index} className="hover:bg-gray-50">
-              <td className="border-b p-4">{appointment.service}</td>
-              <td className="border-b p-4">{appointment.date}</td>
-              <td className="border-b p-4">{appointment.time}</td>
-              <td className="border-b p-4">
-                <button className="bg-green-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-green-600">
-                  Confirmar
-                </button>
-                <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-                  Cancelar
-                </button>
-              </td>
+          {appointment.map((sp) => (
+            <tr key={sp.id} className="border-b border-gray-300">
+              <td className="p-3">{sp.tipe_service}</td>
+              <td className="p-3">{sp.date_register}</td>
+              <td className="p-3">{sp.date_service}</td>
+              <td className="p-3">{sp.hour_service}</td>
+              <td className="p-3">{sp.name_pet}</td>
+              <td className="p-3">{sp.descripcion_service}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
-};
+}
 
 export default AppointmentsTable;
