@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from .models import Service, TipeService, Spealist
 from datetime import datetime
 import json
+from datetime import datetime
 
 
 def hola_mundo(request):
@@ -105,17 +106,18 @@ def editService(request, id):
 
 def get_appointment(request):
     if request.method == 'GET':
-        appointment = list(
-            Service.objects.filter(is_enable=1).values(
-                'tipe_service',
-                'id_user',
-                'date_register',
-                'date_service',
-                'is_enable',
-                'hour_service',
-                'name_pet',
-                'descripcion_service'
-            )
-        )
-        return JsonResponse({'appointment': appointment})
+        services = Service.objects.filter(is_enable=True).select_related('tipe_service')
+        data = []
+        for s in services:
+            data.append({
+                'tipe_service' : s.tipe_service.name_service,
+                'id_user' : s.id_user,
+                'date_register': datetime.strftime(s.date_register, '%d-%m-%Y %H:%M:%S'),
+                'date_service': s.date_service,
+                'is_enable': s.is_enable,
+                'hour_service': s.hour_service,
+                'name_pet': s.name_pet,
+                'descripcion_service' : s.descripcion_service
+            })
+        return JsonResponse({'appointment': data})
     
