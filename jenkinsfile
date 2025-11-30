@@ -25,6 +25,9 @@ pipeline {
 
           cd /tmp/petsalud
 
+          echo "Construccion del proyecto..."
+          docker compose build --no-cache
+
           echo "Levantando servicios con Docker Compose..."
           docker compose up -d
 
